@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 import joblib
 from data_preprocessing import DataPreprocessor
+from geocoder import add_coordinates_to_dataframe
 import os
 import json
 
@@ -21,6 +22,8 @@ data_path = os.path.join(base_dir, 'data', 'indian_real_estate_data.csv')
 
 model = joblib.load(model_path)
 df = pd.read_csv(data_path)
+# Add coordinates for map visualization
+df = add_coordinates_to_dataframe(df)
 preprocessor = DataPreprocessor()
 
 # Prepare data once
@@ -177,6 +180,33 @@ def insights_page():
     return render_template('insights.html', 
                          neighborhoods=state_data,
                          trends=trend_data)
+
+@app.route('/map')
+def map_view():
+    """Interactive map of properties"""
+    return render_template('map.html')
+
+@app.route('/api/properties-map')
+def get_properties_for_map():
+    """API endpoint to get properties for map visualization"""
+    # Sample up to 500 properties to avoid performance issues
+    sample_df = df.sample(n=min(500, len(df)), random_state=42)
+    
+    properties = []
+    for _, row in sample_df.iterrows():
+        properties.append({
+            'latitude': float(row['latitude']),
+            'longitude': float(row['longitude']),
+            'city': str(row['city']),
+            'state': str(row['state']),
+            'price': float(row['price']),
+            'square_feet': int(row['square_feet']),
+            'bedrooms': int(row['bedrooms']),
+            'bathrooms': float(row['bathrooms']),
+            'market_trend': str(row['market_trend'])
+        })
+    
+    return jsonify({'properties': properties})
 
 if __name__ == '__main__':
     print("\n" + "="*80)
