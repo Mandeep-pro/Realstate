@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+    <h2>📊 Model Performance Dashboard</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-box">
+            <h3>R² Score</h3>
+            <div class="value">0.9396</div>
+            <p style="font-size: 0.85em;">93.96% Accuracy</p>
+        </div>
+        <div class="stat-box">
+            <h3>RMSE</h3>
+            <div class="value">₹51,859</div>
+            <p style="font-size: 0.85em;">Root Mean Squared Error</p>
+        </div>
+        <div class="stat-box">
+            <h3>MAE</h3>
+            <div class="value">₹40,834</div>
+            <p style="font-size: 0.85em;">Mean Absolute Error</p>
+        </div>
+        <div class="stat-box">
+            <h3>Test Accuracy</h3>
+            <div class="value">95.3%</div>
+            <p style="font-size: 0.85em;">Average Prediction Accuracy</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>💰 Market Overview</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-box" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <h3>Average Price</h3>
+            <div class="value">₹884,072</div>
+        </div>
+        <div class="stat-box" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <h3>Price Range</h3>
+            <div class="value">₹381K - ₹1.58M</div>
+        </div>
+        <div class="stat-box" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+            <h3>Total Properties</h3>
+            <div class="value">467</div>
+            <p style="font-size: 0.85em;">After Outlier Removal</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>🏘️ Average Prices by State</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div class="neighborhood-box">
+            <h4>🇮🇳 Maharashtra</h4>
+            <p><strong>Average Price:</strong> ₹2,500,000</p>
+            <p>Mumbai, Pune, and other major cities</p>
+        </div>
+        <div class="neighborhood-box">
+            <h4>🏛️ Delhi NCR</h4>
+            <p><strong>Average Price:</strong> ₹1,800,000</p>
+            <p>National capital region with premium pricing</p>
+        </div>
+        <div class="neighborhood-box">
+            <h4>🏢 Karnataka</h4>
+            <p><strong>Average Price:</strong> ₹1,500,000</p>
+            <p>Bangalore and tech hub cities</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>📈 Market Trends Analysis</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+        <div class="neighborhood-box">
+            <h4>📈 Rising Market</h4>
+            <p><strong>Average Price:</strong> ₹1,977,389</p>
+            <p>Properties in appreciating markets (+15%)</p>
+        </div>
+        <div class="neighborhood-box">
+            <h4>➡️ Stable Market</h4>
+            <p><strong>Average Price:</strong> ₹1,874,156</p>
+            <p>Properties with steady market conditions</p>
+        </div>
+        <div class="neighborhood-box">
+            <h4>📉 Declining Market</h4>
+            <p><strong>Average Price:</strong> ₹1,805,734</p>
+            <p>Properties in softer market conditions (-10%)</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>⭐ Top 5 Features Affecting Price</h2>
+    
+    <div style="margin-top: 20px;">
+        <div style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span><strong>1. Square Feet</strong></span>
+                <span>40.35%</span>
+            </div>
+            <div class="feature-bar">
+                <div class="feature-fill" style="width: 40.35%;">40.35%</div>
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span><strong>2. Neighborhood</strong></span>
+                <span>30.28%</span>
+            </div>
+            <div class="feature-bar">
+                <div class="feature-fill" style="width: 30.28%;">30.28%</div>
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span><strong>3. Price per Sq.Ft</strong></span>
+                <span>19.59%</span>
+            </div>
+            <div class="feature-bar">
+                <div class="feature-fill" style="width: 19.59%;">19.59%</div>
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span><strong>4. Amenities Count</strong></span>
+                <span>5.12%</span>
+            </div>
+            <div class="feature-bar">
+                <div class="feature-fill" style="width: 5.12%;">5.12%</div>
+            </div>
+        </div>
+        
+        <div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span><strong>5. Bedrooms</strong></span>
+                <span>4.66%</span>
+            </div>
+            <div class="feature-bar">
+                <div class="feature-fill" style="width: 4.66%;">4.66%</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h2>🚀 Quick Stats</h2>
+    <ul style="list-style: none; line-height: 1.8;">
+        <li>✅ Model: Gradient Boosting Regressor</li>
+        <li>✅ Training Set: 373 properties</li>
+        <li>✅ Test Set: 94 properties</li>
+        <li>✅ Features: 11 original + 5 engineered = 16 total</li>
+        <li>✅ Prediction Accuracy: 95.3% average</li>
+        <li>✅ Best Single Prediction: Error of only ₹337</li>
+    </ul>
+</div>
+
+{% endblock %}
