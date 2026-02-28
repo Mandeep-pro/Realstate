@@ -20,6 +20,9 @@ This project builds regression models to predict home prices using:
 - Interactive Jupyter notebook for exploration
 - Command-line training script
 - Prediction utilities for new properties
+- **🗺️ Web Interface with Interactive Map** - Visualize properties on Leaflet.js map
+- **📊 Dashboard** - View model performance metrics and market insights
+- **🔮 Price Prediction Tool** - Make predictions directly from web interface
 
 ## 📊 Models Included
 
@@ -58,6 +61,13 @@ This project builds regression models to predict home prices using:
    pip install -r requirements.txt
    ```
 
+### Web App Dependencies
+
+The Flask web application requires these additional packages (included in requirements.txt):
+- **Flask** - Web framework
+- **Leaflet.js** - Interactive maps (loaded via CDN)
+- **OpenStreetMap** - Map tiles (loaded via CDN)
+
 ## 📁 Project Structure
 
 ```
@@ -69,10 +79,20 @@ real_estate_predictor/
 │   └── best_model_*.pkl              # Saved trained models
 ├── notebooks/
 │   └── real_estate_analysis.ipynb    # Interactive Jupyter notebook
+├── templates/
+│   ├── base.html                     # Base HTML template
+│   ├── index.html                    # Dashboard
+│   ├── predict.html                  # Price prediction form
+│   ├── predictions.html              # Test results
+│   ├── features.html                 # Feature importance
+│   ├── insights.html                 # Market insights
+│   └── map.html                      # Interactive map (NEW!)
 ├── visualizations/
 │   ├── predictions_plot.png          # Actual vs Predicted
 │   └── feature_importance.png        # Feature importance chart
+├── app.py                            # Flask web application (NEW!)
 ├── data_preprocessing.py              # Data preprocessing class
+├── geocoder.py                       # Geocoding utility (NEW!)
 ├── model.py                          # Model training and evaluation
 ├── predict.py                        # Prediction utilities
 ├── train.py                          # Main training script
@@ -135,6 +155,53 @@ property_data = {
 price = predictor.predict_single(property_data)
 print(f"Predicted Price: ${price:,.0f}")
 ```
+
+### Option 4: Interactive Web Application (NEW!)
+
+Launch the Flask web application to use the interactive dashboard and map:
+
+```bash
+python app.py
+```
+
+Then open your browser and go to: **http://127.0.0.1:5000**
+
+#### Web Interface Features:
+
+- **📊 Dashboard** (`/`) - View model performance metrics and market statistics
+- **🔮 Predict Price** (`/predict`) - Interactive form to predict property prices
+- **📈 Test Results** (`/predictions`) - View model predictions on test dataset
+- **⭐ Features** (`/features`) - Analyze feature importance
+- **🔍 Market Insights** (`/insights`) - Explore market trends and price statistics
+- **🗺️ Map View** (`/map`) - Interactive Leaflet.js map showing all properties
+  - Color-coded markers (Green = Budget, Yellow = Mid-range, Red = Premium)
+  - Click markers for property details
+  - Marker clustering for better navigation
+  - OpenStreetMap integration
+
+## 🗺️ Map Integration
+
+The project now includes an interactive map feature powered by **Leaflet.js**:
+
+### Features:
+- **Geographic Visualization**: See all properties plotted on an interactive map
+- **Geocoding**: 50+ Indian cities pre-mapped with coordinates
+- **Price-based Markers**: Properties color-coded by price range:
+  - 🟢 Green: Budget-friendly (< ₹50 Lakhs)
+  - 🟡 Yellow: Mid-range (₹50L - ₹1 Crore)
+  - 🔴 Red: Premium (> ₹1 Crore)
+- **Marker Details**: Click any marker to view:
+  - Property location (city/state)
+  - Price in Lakhs
+  - Size in square feet
+  - Bedrooms & bathrooms
+  - Market trend
+
+### Map Architecture:
+- `geocoder.py` - Geocoding utility with city coordinates
+- `templates/map.html` - Interactive Leaflet.js interface
+- `/api/properties-map` - API endpoint for property data (samples up to 500 properties)
+- Automatic coordinate addition to dataframe based on city name
 
 ## 📊 Evaluation Metrics
 
