@@ -11,9 +11,6 @@ todos = [
     {"id": 3, "task": "Finish project", "status": "pending"}    
 
 ]
-@app.route('/todos', methods=['GET'])
-def get_todos():
-    return jsonify(todos)
 
 ## retrieve all the items in the todo list
 @app.route('/todos', methods=['GET'])
@@ -28,8 +25,7 @@ def get_todo(todo_id):
     if todo:
         return jsonify(todo)
     else:
-        return jsonify({"error": "Todo not found"}), 404        
-    return jsonify(todo)
+        return jsonify({"error": "Todo not found"}), 404
 
 ## post: Add a new item to the todo list
 @app.route('/todos', methods=['POST'])  

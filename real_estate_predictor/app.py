@@ -22,16 +22,17 @@ data_path = os.path.join(base_dir, 'data', 'indian_real_estate_data.csv')
 
 model = joblib.load(model_path)
 df = pd.read_csv(data_path)
-# Add coordinates for map visualization
-df = add_coordinates_to_dataframe(df)
 preprocessor = DataPreprocessor()
 
-# Prepare data once
+# Prepare data once (without coordinates)
 X_train, X_test, y_train, y_test = preprocessor.prepare_data(
-    data=df,
+    data=df.copy(),
     target_col='price',
     categorical_cols=['state', 'city', 'market_trend']
 )
+
+# Add coordinates for map visualization after preprocessing
+df = add_coordinates_to_dataframe(df)
 
 # Make predictions
 y_pred = model.predict(X_test)
